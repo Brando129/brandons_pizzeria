@@ -13,6 +13,33 @@ def registration():
     return render_template('registration.html')
 
 # Route for rendering the Login page.
-@app.route('/login')
-def login():
+@app.route('/user_login')
+def user_login():
     return render_template('login.html')
+
+# Route for logging a user out.
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/user_login')
+
+# Route for rendering the Homepage.
+@app.route('/homepage')
+def check_session():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        'id': session ['user_id']
+    }
+    return render_template('homepage.html')
+
+# Post Routes
+# Route for registering a user.
+@app.post('/register')
+def register():
+    return redirect('/homepage')
+
+# Route for logging a user in.
+@app.post('/login')
+def login():
+    return redirect('/homepage')
