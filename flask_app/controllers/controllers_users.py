@@ -31,15 +31,40 @@ def check_session():
     data = {
         'id': session ['user_id']
     }
-    return render_template('homepage.html')
+    return render_template('homepage.html', user=models_user.User.get_user_by_id(data))
 
 # Post Routes
 # Route for registering a user.
 @app.post('/register')
 def register():
+    if not models_user.User.validate_user(request.form):
+        # We redirect to the template with the form.
+        return redirect('/')
+    # Create data object for hashing a user's password.
+    data = {
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email'],
+        "password": bcrypt.generate_password_hash(request.form['password']), # Function for generating the hash.
+        "confirm_password": request.form['confirm_password']
+    }
+    """We save the data to the database and are returned a user's id. We put
+    this user id into session because when we go back to the dashboard we want
+    to check if the user is in session and if they are not we redirect them.
+    This is how we keep our applications safe."""
+    id = models_user.User.save_user(data)
+    session['user_id'] = id
     return redirect('/homepage')
 
 # Route for logging a user in.
 @app.post('/login')
 def login():
+    user = models_user.User.get_user_by_email(request.form)
+    if not user:
+        flash("Invalid email or password.", "login")
+        return redirect('/')
+    if not bcrypt.check_password_hash(user.password, request.form['password']):
+        flash("Invalid email or password.", "login")
+        return redirect('/')
+    session['user_id'] = user.id
     return redirect('/homepage')
