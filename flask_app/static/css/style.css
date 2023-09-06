@@ -1,0 +1,24 @@
+/* CSS Reset */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Registration and Login Links */
+.reg_and_log_links {
+    font-size: 20px;
+    text-decoration: none;
+    color: green;
+}
+
+/* Registration and Login Labels */
+.reg_and_log_labels {
+    font-size: 20px;
+    text-decoration: none;
+    color: green;
+}
+
+.sign_up_btn {
+    background-color: green;
+    font-size: 20px;
+}

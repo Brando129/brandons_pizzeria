@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center border border-danger p-3">
+            <h1>Brandon's Pizzeria</h1>
+            <a class="reg_and_log_links" href="/register">Already have an account? Login</a>
+        </div>
+        <div class="col-md-6 mx-auto mt-5">
+            <form class="d-flex flex-column" action="/login" method="POST">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <label class="reg_and_log_labels" for="first_name">First Name</label>
+                        <input class="form-control" type="text" name="first_name">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="last_name">Last Name</label>
+                        <input class="form-control" type="text" name="last_name">
+                    </div>
+                </div>
+                <div>
+                    <label class="reg_and_log_labels" for="email">Email</label>
+                    <input class="form-control" type="text" name="email">
+                </div>
+                <div>
+                    <label class="reg_and_log_labels" for="address">Address</label>
+                    <input class="form-control" type="text" name="address">
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <label class="reg_and_log_labels" for="city">City</label>
+                        <input class="form-control" type="text" name="city">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="state">State</label>
+                        <select class="form-control" name="state">
+                            <option value="Pennsylvania">PA</option>
+                            <option value="West Virginia">WV</option>
+                            <option value="Ohio">OH</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="reg_and_log_labels" for="password">Password</label>
+                    <input class="form-control" type="password" name="passowrd">
+                </div>
+                <div>
+                    <label class="reg_and_log_labels" for="confirm_password">Confirm</label>
+                    <input class="form-control" type="password" name="confirm_password">
+                </div>
+                <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
