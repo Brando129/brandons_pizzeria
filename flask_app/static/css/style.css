@@ -4,21 +4,47 @@
     padding: 0px;
 }
 
+/* Page body */
+.background {
+    /* Background image */
+    background-image: linear-gradient(to bottom right, darkred, black);
+    /* Set a specified height, or the minimum height for the background image */
+    min-height: 500px;
+
+    /* Set background image to fixed (don't scroll along with the page) */
+    background-attachment: fixed;
+
+    /* Center the background image */
+    background-position: center;
+
+    /* Set the background image to no repeat */
+    background-repeat: no-repeat;
+
+    /* Scale the background image to be as large as possible */
+    background-size: cover;
+}
+
+/* Project Title */
+.proj_title {
+    color: antiquewhite;
+}
+
 /* Registration and Login Links */
 .reg_and_log_links {
     font-size: 20px;
     text-decoration: none;
-    color: green;
+    color: antiquewhite;
 }
 
 /* Registration and Login Labels */
 .reg_and_log_labels {
     font-size: 20px;
     text-decoration: none;
-    color: green;
+    color: antiquewhite;
 }
 
 .sign_up_btn {
-    background-color: green;
+    color: antiquewhite;
+    background-color: lightslategray;
     font-size: 20px;
 }

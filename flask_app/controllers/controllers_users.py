@@ -11,3 +11,8 @@ bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
 @app.route('/')
 def registration():
     return render_template('registration.html')
+
+# Route for rendering the Login page.
+@app.route('/login')
+def login():
+    return render_template('login.html')
