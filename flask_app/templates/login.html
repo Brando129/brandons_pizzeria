@@ -28,13 +28,22 @@
         <div class="col-md-6 mx-auto my-5 p-3 bg-dark rounded">
             <h1 class="proj_title text-center">Welcome Back!</h1>
             <form class="d-flex flex-column" action="/login" method="POST">
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages(category_filter=['login']) %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p class="text-danger"><strong>{{message}}</strong></p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <!-- End of Flash messages -->
                 <div class="mb-2">
                     <label class="reg_and_log_labels" for="email">Email</label>
                     <input class="form-control" type="text" name="email">
                 </div>
                 <div class="mb-2">
                     <label class="reg_and_log_labels" for="password">Password</label>
-                    <input class="form-control" type="password" name="passowrd">
+                    <input class="form-control" type="password" name="password">
                 </div>
                 <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Log In">
             </form>

@@ -45,6 +45,9 @@ def register():
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
+        "address": request.form['address'],
+        "city": request.form['city'],
+        "state": request.form['state'],
         "password": bcrypt.generate_password_hash(request.form['password']), # Function for generating the hash.
         "confirm_password": request.form['confirm_password']
     }
@@ -52,7 +55,7 @@ def register():
     this user id into session because when we go back to the dashboard we want
     to check if the user is in session and if they are not we redirect them.
     This is how we keep our applications safe."""
-    id = models_user.User.save_user(data)
+    id = models_user.User.save_new_user(data)
     session['user_id'] = id
     return redirect('/homepage')
 
@@ -62,7 +65,7 @@ def login():
     user = models_user.User.get_user_by_email(request.form)
     if not user:
         flash("Invalid email or password.", "login")
-        return redirect('/')
+        return redirect('/user_login')
     if not bcrypt.check_password_hash(user.password, request.form['password']):
         flash("Invalid email or password.", "login")
         return redirect('/')

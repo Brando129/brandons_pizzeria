@@ -43,8 +43,35 @@
     color: antiquewhite;
 }
 
+/* Sign up button */
 .sign_up_btn {
     color: antiquewhite;
     background-color: lightslategray;
     font-size: 20px;
+}
+
+/* Navbar Links */
+.navbar_links {
+    font-size: 25px;
+    text-decoration: none;
+    color: antiquewhite;
+    margin: 0px 10px 0px 10px;
+}
+
+/* Quick options subtitle */
+.quick_opt {
+    color: antiquewhite;
+}
+
+/* Quick option cards */
+div.card {
+    height: 300px;
+    width: 100%;
+    border: 1px solid antiquewhite;
+}
+
+/* Quick option text */
+.quick_opt_txt {
+    font-size: 20px;
+    color: antiquewhite;
 }
