@@ -70,6 +70,10 @@ div.card {
     border: 1px solid antiquewhite;
 }
 
+.b_bottom {
+    border-bottom: 2px solid antiquewhite;
+}
+
 /* Quick option text */
 .quick_opt_txt {
     font-size: 20px;

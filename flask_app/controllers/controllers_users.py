@@ -33,6 +33,13 @@ def check_session():
     }
     return render_template('homepage.html', user=models_user.User.get_user_by_id(data))
 
+# Route for rendering the Craft Pizza page.
+@app.route('/craft_pizza')
+def craft_pizza():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return render_template('craft_pizza.html')
+
 # Post Routes
 # Route for registering a user.
 @app.post('/register')
