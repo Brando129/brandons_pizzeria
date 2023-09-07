@@ -5,8 +5,8 @@ from flask import flash
 # Database name
 db = "brandons_pizzeria"
 
-# User class.
-class User:
+# Pizza class.
+class Pizza:
     def __init__(self, data):
         self.id = data['id']
         self.method = data['method']
@@ -17,14 +17,15 @@ class User:
         self.cheese = data['cheese']
         self.sauce = data['sauce']
         self.topping = data['topping']
+        self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
     # Classmethod for saving a new pizza.
     @classmethod
     def save_new_pizza(cls, data):
-        query = """INSERT INTO pizzas (method, size, crust, quantity, meat, cheese, sauce, topping)
-                VALUES (%(method)s, %(size)s, %(crust)s, %(quantity)s, %(meat)s, %(cheese)s, %(sauce)s, %(topping)s);"""
+        query = """INSERT INTO pizzas (method, size, crust, quantity, meat, cheese, sauce, topping, user_id)
+                VALUES (%(method)s, %(size)s, %(crust)s, %(quantity)s, %(meat)s, %(cheese)s, %(sauce)s, %(topping)s, %(user_id)s);"""
         return connectToMySQL(db).query_db(query, data)
 
     # Classmethod for getting a pizza by it's ID.

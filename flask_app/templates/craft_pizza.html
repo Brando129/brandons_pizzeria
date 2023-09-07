@@ -33,9 +33,9 @@
         <h1 class="quick_opt text-center my-5">Craft-A-Pizza</h1>
         <!-- Form Container -->
         <div class="col-md-6 mx-auto my-5 p-3 bg-dark rounded">
-            <form class="d-flex flex-column" action="/create_order" method="POST">
+            <form class="d-flex flex-column" action="/create_pizza" method="POST">
                 <!-- Flash messages -->
-                {% with messages = get_flashed_messages(category_filter=['craft_pizza']) %}     <!-- declare a variable called messages -->
+                {% with messages = get_flashed_messages(category_filter=['pizza']) %}     <!-- declare a variable called messages -->
                     {% if messages %}                            <!-- check if there are any messages -->
                         {% for message in messages %}            <!-- loop through the messages -->
                             <p class="text-danger"><strong>{{message}}</strong></p>                   <!-- display each message in a paragraph tag -->
@@ -48,8 +48,8 @@
                         <label class="reg_and_log_labels" for="method">Method</label>
                         <select class="form-control" name="method">
                             <option value=""></option>
-                            <option value="pick_up">Pick up</option>
-                            <option value="delivery">Delivery</option>
+                            <option value="Pick up">Pick up</option>
+                            <option value="Delivery">Delivery</option>
                         </select>
                     </div>
                 </div>
@@ -58,31 +58,42 @@
                         <label class="reg_and_log_labels" for="size">Size</label>
                         <select class="form-control" name="size">
                             <option value=""></option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="x-large">X-Large</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
                         </select>
                     </div>
                     <div>
                         <label class="reg_and_log_labels" for="crust">Crust</label>
                         <select class="form-control" name="crust">
                             <option value=""></option>
-                            <option value="thin_crust">Thin crust</option>
-                            <option value="flatbread_crust">Flatbread crust</option>
-                            <option value="original_crust">Original crust</option>
-                            <option value="stuffed_crust">Stuffed crust</option>
-                            <option value="cheese_crust">Cheese crust</option>
-                            <option value="garlic_crust">Garlic crust</option>
-                            <option value="deep_dish">Deep dish</option>
+                            <option value="Thin crust">Thin crust</option>
+                            <option value="Flatbread crust">Flatbread crust</option>
+                            <option value="Original crust">Original crust</option>
+                            <option value="Stuffed crust">Stuffed crust</option>
+                            <option value="Cheese crust">Cheese crust</option>
+                            <option value="Garlic crust">Garlic crust</option>
+                            <option value="Deep dish">Deep dish</option>
                         </select>
                     </div>
                     <div>
-                        <label class="reg_and_log_labels" for="quanity">QTY</label>
-                        <input class="form-control" type="text" name="quanity">
+                        <label class="reg_and_log_labels" for="quantity">QTY</label>
+                        <input class="form-control" type="text" name="quantity">
                     </div>
                 </div>
-                <h4 class="proj_title my-3">Meats</h4>
+                <div>
+                    <label class="reg_and_log_labels" for="meat">Meat</label>
+                    <select class="form-control" name="meat">
+                        <option value=""></option>
+                        <option value="Pepperoni">Pepperoni</option>
+                        <option value="Sausage">Sausage</option>
+                        <option value="Ham">Ham</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Bacon">Bacon</option>
+                    </select>
+                </div>
+                <!-- <h4 class="proj_title my-3">Meats</h4>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="pepperoni">Pepperoni</label>
@@ -104,8 +115,19 @@
                         <label class="reg_and_log_labels" for="bacon">Bacon</label>
                         <input type="checkbox" name="bacon">
                     </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="cheese">Cheese</label>
+                    <select class="form-control" name="cheese">
+                        <option value=""></option>
+                        <option value="Provolone">Provolone</option>
+                        <option value="American">American</option>
+                        <option value="Mozzorella">Mozzorella</option>
+                        <option value="Parmesan">Parmesan</option>
+                        <option value="Cheddar">Cheddar</option>
+                    </select>
                 </div>
-                <h4 class="proj_title my-3">Cheeses</h4>
+                <!-- <h4 class="proj_title my-3">Cheeses</h4>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="provolone">Provolone</label>
@@ -127,8 +149,19 @@
                         <label class="reg_and_log_labels" for="cheddar">Cheddar</label>
                         <input type="checkbox" name="cheddar">
                     </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="sauce">Sauces</label>
+                    <select class="form-control" name="sauce">
+                        <option value=""></option>
+                        <option value="Traditional">Traditional</option>
+                        <option value="Buffalo">Buffalo</option>
+                        <option value="Alfredo">Alfredo</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="Sweet">Sweet</option>
+                    </select>
                 </div>
-                <h4 class="proj_title my-3">Sauces</h4>
+                <!-- <h4 class="proj_title my-3">Sauces</h4>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="traditional">Traditional</label>
@@ -150,8 +183,19 @@
                         <label class="reg_and_log_labels" for="sweet">Sweet</label>
                         <input type="checkbox" name="sweet">
                     </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="topping">Toppings</label>
+                    <select class="form-control" name="topping">
+                        <option value=""></option>
+                        <option value="Onions">Onions</option>
+                        <option value="Peppers">Peppers</option>
+                        <option value="Mushrooms">Mushrooms</option>
+                        <option value="Olives">Olives</option>
+                        <option value="Pineapples">Pineapples</option>
+                    </select>
                 </div>
-                <h4 class="proj_title my-3">Toppings</h4>
+                <!-- <h4 class="proj_title my-3">Toppings</h4>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="onions">Onions</label>
@@ -173,8 +217,8 @@
                         <label class="reg_and_log_labels" for="pineapples">Pineapples</label>
                         <input type="checkbox" name="pineapples">
                     </div>
-                </div>
-                <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="ADD TO ORDER">
+                </div> -->
+                <input class="sign_up_btn mt-3 p-2 rounded" type="submit" value="ADD TO ORDER">
             </form>
         </div>
         <!-- End of Form Container -->
