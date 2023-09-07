@@ -8,6 +8,8 @@ from flask_app.models import models_user, models_pizza
 def create_pizza():
     if 'user_id' not in session:
         return redirect('/logout')
+    if not models_pizza.Pizza.validate_pizza(request.form):
+        return redirect('/craft_pizza')
     pizza = {
         'method': request.form['method'],
         'size': request.form['size'],

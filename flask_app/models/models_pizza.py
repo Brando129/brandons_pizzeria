@@ -64,11 +64,11 @@ class Pizza:
             flash("Quantity is required.", "pizza")
             is_valid = False
         # Test if quantity is selected.
-        # if data['sauce'] == '':
-        #     flash("Quantity is required.", "pizza")
-        #     is_valid = False
+        if data['sauce'] == '':
+            flash("Sauce is required.", "pizza")
+            is_valid = False
         # Test if quantity is selected.
-        # if data['cheese'] == '':
-        #     flash("Quantity is required.", "pizza")
-        #     is_valid = False
+        if data['cheese'] == '':
+            flash("Cheese is required.", "pizza")
+            is_valid = False
         return is_valid
