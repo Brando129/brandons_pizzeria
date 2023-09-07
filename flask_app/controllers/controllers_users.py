@@ -40,6 +40,20 @@ def craft_pizza():
         return redirect('/logout')
     return render_template('craft_pizza.html')
 
+# Route for rendering the Order page.
+@app.route('/order')
+def order():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return render_template('order.html')
+
+# Route for rendering the Account page.
+@app.route('/account')
+def account():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return render_template('account.html')
+
 # Post Routes
 # Route for registering a user.
 @app.post('/register')
