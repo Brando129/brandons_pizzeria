@@ -29,33 +29,6 @@ class Pizza:
                 VALUES (%(method)s, %(size)s, %(crust)s, %(quantity)s, %(meat)s, %(cheese)s, %(sauce)s, %(topping)s, %(order_id)s);"""
         return connectToMySQL(db).query_db(query, data)
 
-    # Classmethod for getting all the pizzas for a specific user.
-    # @classmethod
-    # def get_all_customer_pizzas(cls):
-    #     query = """SELECT * FROM pizzas JOIN users on
-    #             users.id = pizzas.user_id WHERE user_id = %(id)s;"""
-    #     results = connectToMySQL(db).query_db(query)
-    #     customer_pizzas = []
-    #     for row in results:
-    #         pizza = cls(row)
-    #         each_pizza = {
-    #             'id': row['pizzas.id'],
-    #             'method': row['method'],
-    #             'size': row['size'],
-    #             'crust': row['crust'],
-    #             'quantity': row['quantity'],
-    #             'meat': row['meat'],
-    #             'cheese': row['cheese'],
-    #             'sauce': row['sauce'],
-    #             'topping': row['topping'],
-    #             'user_id': row['user_id'],
-    #             'created_at': row['created_at'],
-    #             'updated_at': row['updated_at']
-    #         }
-    #         pizza.user = models_user.User(each_pizza)
-    #         customer_pizzas.append(pizza)
-    #     return customer_pizzas
-
     # Classmethod for getting a pizza by it's ID.
     @classmethod
     def get_pizza_by_id(cls, data):

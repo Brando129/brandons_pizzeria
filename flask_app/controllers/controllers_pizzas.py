@@ -23,8 +23,25 @@ def create_pizza():
     }
     models_pizza.Pizza.save_new_pizza(pizza)
 
+    delivery = float(request.form['method'])
+    price = float(request.form['size'])
+    quantity = float(request.form['quantity'])
+    tax = (price * quantity + delivery) * .07
+    total_price = round(price * quantity + delivery + tax, 2)
+    # math.trunc(total_price)
+    total = total_price
+
+
     order = {
-        'total': float(12.99),
+        'total': total,
+        'method': request.form['method'],
+        'size': request.form['size'],
+        'crust': request.form['crust'],
+        'quantity': request.form['quantity'],
+        'meat': request.form['meat'],
+        'cheese': request.form['cheese'],
+        'sauce': request.form['sauce'],
+        'topping': request.form['topping'],
         'user_id': session['user_id']
     }
     models_order.Order.save_new_order(order)
