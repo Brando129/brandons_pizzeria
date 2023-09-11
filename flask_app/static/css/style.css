@@ -79,3 +79,25 @@ div.card {
     font-size: 20px;
     color: antiquewhite;
 }
+
+/* Fields Scroll Bar */
+.scrollbar::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: transparent;
+    height: 7px;
+}
+
+.scrollbar::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border: 2px solid black;
+}
+/* End of Fields Scroll Bar */

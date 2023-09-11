@@ -29,29 +29,14 @@ class Order:
                 VALUES (%(total)s, %(method)s, %(size)s, %(crust)s, %(quantity)s, %(meat)s, %(cheese)s, %(sauce)s, %(topping)s, %(user_id)s);"""
         return connectToMySQL(db).query_db(query, data)
 
-    # Classmethod for getting all the orders for a specific user.
+    # Classmethod for getting all the orders from a specific user.
     @classmethod
-    def get_all_user_orders(cls):
-        query = """SELECT * FROM orders JOIN users on
-                users.id = orders.user_id WHERE user_id = %(id)s;"""
-        results = connectToMySQL(db).query_db(query)
+    def get_all_user_orders(cls, data):
+        query = """SELECT * FROM orders WHERE user_id = %(id)s;"""
+        results = connectToMySQL(db).query_db(query, data)
+        print(results)
         customer_orders = []
-        for row in results:
-            order = cls(row)
-            each_order = {
-                'id': row['pizzas.id'],
-                'method': row['method'],
-                'size': row['size'],
-                'crust': row['crust'],
-                'quantity': row['quantity'],
-                'meat': row['meat'],
-                'cheese': row['cheese'],
-                'sauce': row['sauce'],
-                'topping': row['topping'],
-                'user_id': row['user_id'],
-                'created_at': row['created_at'],
-                'updated_at': row['updated_at']
-            }
-            order.user = models_user.User(each_order)
-            customer_orders.append(order)
+        for order in results:
+            print(order)
+            customer_orders.append(cls(order))
         return customer_orders

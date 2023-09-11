@@ -52,7 +52,11 @@ def order():
 def account():
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('account.html')
+    data = {
+        'id': session['user_id']
+    }
+    orders = models_order.Order.get_all_user_orders(data)
+    return render_template('account.html', orders=orders)
 
 # Post Routes
 # Route for registering a user.

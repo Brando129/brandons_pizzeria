@@ -81,46 +81,39 @@
                     </div>
                     <!-- End of Form Container -->
                 </div>
+                <!-- Form Container -->
+                <h2 class="proj_title">Past Orders</h2>
+                {% for order in orders | reverse %}
                 <div class="col-md-6 my-5">
-                    <h2 class="proj_title">Past Orders</h2>
                     <div class="p-3 bg-dark rounded">
                         <form class="d-flex flex-column" action="/update_favorite" method="POST">
                             <div class="mb-2">
-                                <label class="reg_and_log_labels" for="first_name">First Name</label>
-                                <input class="form-control" type="text" name="first_name">
+                                <label class="reg_and_log_labels" for="size">{{ order.size }}</label>
+                                <input type="hidden" value="{{ order.size }}">
                             </div>
                             <div class="mb-2">
-                                <label class="reg_and_log_labels" for="last_name">Last Name</label>
-                                <input class="form-control" type="text" name="last_name">
+                                <label class="reg_and_log_labels" for="last_name">{{ order.crust }}</label>
+                                <input type="hidden" value="{{ order.crust }}">
                             </div>
                             <div class="mb-2">
-                                <label class="reg_and_log_labels" for="email">Email</label>
-                                <input class="form-control" type="text" name="email">
+                                <label class="reg_and_log_labels" for="email">{{ order.sauce }}</label>
+                                <input type="hidden" value="{{ order.sauce }}">
                             </div>
                             <div class="mb-2">
-                                <label class="reg_and_log_labels" for="address">Address</label>
-                                <input class="form-control" type="text" name="address">
+                                <label class="reg_and_log_labels" for="address">{{ order.cheese }}</label>
+                                <input type="hidden" value="{{ order.cheese }}">
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <label class="reg_and_log_labels" for="city">City</label>
-                                    <input class="form-control" type="text" name="city">
+                                <div class="d-flex align-items-center">
+                                    <p class="reg_and_log_labels"><label class="reg_and_log_labels" for="city">Topping:</label>{{ order.topping }}</p>
                                 </div>
-                                <div>
-                                    <label class="reg_and_log_labels" for="state">State</label>
-                                    <select class="form-control" name="state">
-                                        <option value=""></option>
-                                        <option value="Pennsylvania">PA</option>
-                                        <option value="West Virginia">WV</option>
-                                        <option value="Ohio">OH</option>
-                                    </select>
-                                </div>
+                                <input type="hidden" value="{{ order.topping }}">
+                                <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Favorite">
                             </div>
-                            <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Update">
                         </form>
                     </div>
-                    <!-- End of Form Container -->
+                    {% endfor %}
                 </div>
+                <!-- End of Form Container -->
             </div>
         </div>
     </div>
