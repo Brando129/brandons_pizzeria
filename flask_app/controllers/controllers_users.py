@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from flask_app.models import models_user, models_order
+from flask_app.models import models_user, models_order, models_favorite, models_pizza
 # Bcrypt import
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
@@ -39,6 +39,24 @@ def craft_pizza():
     if 'user_id' not in session:
         return redirect('/logout')
     return render_template('craft_pizza.html')
+
+# Route for rendering the Re-order Pizza page.
+@app.route('/craft_fav_pizza')
+def craft_fav_pizza():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        'id': session['user_id']
+    }
+    user_favorite = models_favorite.Favorite.get_user_favortie(data)
+    return render_template('reorder_fav.html', user_favorite=user_favorite)
+
+# Route for rendering the Surprise Pizza page.
+@app.route('/craft_surprise_pizza')
+def craft_surprise_pizza():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return render_template('craft_surprise_pizza.html')
 
 # Route for rendering the Order page.
 @app.route('/order')

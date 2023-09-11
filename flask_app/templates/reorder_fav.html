@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootswatch -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}"> -->
+    <!-- Font Links -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital@1&display=swap" rel="stylesheet"> -->
+    <title>Craft Pizza</title>
+</head>
+<body class="background">
+    <!-- Page Container -->
+    <div class="col-12">
+        <!-- Banner -->
+        <div class="d-flex justify-content-between align-items-center p-3 bg-dark b_bottom">
+            <h1 class="proj_title">Brandon's Pizzeria</h1>
+            <div>
+                <a class="navbar_links" href="/homepage">Home</a>
+                <a class="navbar_links" href="/account">Account</a>
+                <a class="navbar_links" href="/order">Order</a>
+                <a class="navbar_links" href="/logout">Logout</a>
+            </div>
+        </div>
+        <!-- End of Banner -->
+        <h1 class="quick_opt text-center my-5">Re-Order Favorite Pizza</h1>
+        <!-- Form Container -->
+        <div class="col-md-6 mx-auto my-5 p-3 bg-dark rounded">
+            <form class="d-flex flex-column" action="/create_pizza" method="POST">
+                <input type="hidden" name="order_id" value="{{ session.user_id }}">
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages(category_filter=['pizza']) %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p class="text-danger"><strong>{{message}}</strong></p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <!-- End of Flash messages -->
+                {% for favorite in user_favorite %}
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="method">Method</label>
+                        <select class="form-control" name="method">
+                            <option value=""></option>
+                            <option value="0.00">Pick up</option>
+                            <option value="6.99">Delivery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="size">Size</label>
+                        <select class="form-control" name="size">
+                            <option value=""></option>
+                            <option value="12.99">Small</option>
+                            <option value="14.99">Medium</option>
+                            <option value="16.99">Large</option>
+                            <option value="19.99">X-Large</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="crust">Crust</label>
+                        <select class="form-control" name="crust">
+                            <option value="{{ favorite.crust }}">{{ favorite.crust }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="quantity">QTY</label>
+                        <input class="form-control" type="text" name="quantity">
+                    </div>
+                </div>
+                <div>
+                    <label class="reg_and_log_labels" for="meat">Meat</label>
+                    <select class="form-control" name="meat">
+                        <option value="{{ favorite.meat }}">{{ favorite.meat }}</option>
+                    </select>
+                </div>
+                <!-- <h4 class="proj_title my-3">Meats</h4>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="pepperoni">Pepperoni</label>
+                        <input type="checkbox" name="pepperoni">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="Sausage">Sausage</label>
+                        <input type="checkbox" name="Sausage">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="ham">Ham</label>
+                        <input type="checkbox" name="ham">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="chicken">Chicken</label>
+                        <input type="checkbox" name="chicken">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="bacon">Bacon</label>
+                        <input type="checkbox" name="bacon">
+                    </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="cheese">Cheese</label>
+                    <select class="form-control" name="cheese">
+                        <option value="{{ favorite.cheese }}">{{ favorite.cheese }}</option>
+                    </select>
+                </div>
+                <!-- <h4 class="proj_title my-3">Cheeses</h4>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="provolone">Provolone</label>
+                        <input type="checkbox" name="provolone">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="american">American</label>
+                        <input type="checkbox" name="american">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="mozzarella">Mozzorella</label>
+                        <input type="checkbox" name="mozzarella">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="parmesan">Parmesan</label>
+                        <input type="checkbox" name="parmesan">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="cheddar">Cheddar</label>
+                        <input type="checkbox" name="cheddar">
+                    </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="sauce">Sauces</label>
+                    <select class="form-control" name="sauce">
+                        <option value="{{ favorite.sauce }}">{{ favorite.sauce }}</option>
+                    </select>
+                </div>
+                <!-- <h4 class="proj_title my-3">Sauces</h4>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="traditional">Traditional</label>
+                        <input type="checkbox" name="traditional">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="buffalo">Buffalo</label>
+                        <input type="checkbox" name="buffalo">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="alfredo">Alfredo</label>
+                        <input type="checkbox" name="alfredo">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="bbq">BBQ</label>
+                        <input type="checkbox" name="bbq">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="sweet">Sweet</label>
+                        <input type="checkbox" name="sweet">
+                    </div>
+                </div> -->
+                <div>
+                    <label class="reg_and_log_labels" for="topping">Toppings</label>
+                    <select class="form-control" name="topping">
+                        <option value="{{ favorite.topping }}">{{ favorite.topping }} </option>
+                    </select>
+                </div>
+                <!-- <h4 class="proj_title my-3">Toppings</h4>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <label class="reg_and_log_labels" for="onions">Onions</label>
+                        <input type="checkbox" name="onions">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="peppers">Peppers</label>
+                        <input type="checkbox" name="peppers">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="mushrooms">Mushrooms</label>
+                        <input type="checkbox" name="mushrooms">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="olives">Olives</label>
+                        <input type="checkbox" name="olives">
+                    </div>
+                    <div>
+                        <label class="reg_and_log_labels" for="pineapples">Pineapples</label>
+                        <input type="checkbox" name="pineapples">
+                    </div>
+                </div> -->
+                <input class="sign_up_btn mt-3 p-2 rounded" type="submit" value="ADD TO ORDER">
+                {% endfor %}
+            </form>
+        </div>
+        <!-- End of Form Container -->
+    </div>
+    <!-- End of Page Container -->
+</body>
+</html>

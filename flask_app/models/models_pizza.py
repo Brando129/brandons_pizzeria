@@ -1,7 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 # Flash messages import
 from flask import flash
-from flask_app.models import models_user
 
 # Database name
 db = "brandons_pizzeria"

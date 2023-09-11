@@ -8,7 +8,6 @@ from flask_app.models import models_order
 def create_order():
     if 'user_id' not in session:
         return redirect('/logout')
-    # Validation needed
     order = {
         'total': session['total'],
         'user_id': session['user_id']

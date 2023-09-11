@@ -85,7 +85,7 @@
                 <div class="col-md-6 my-5">
                     <h2 class="proj_title">Previous Orders</h2>
                     {% for order in orders | reverse %}
-                    <form class="mb-3 p-3 bg-dark rounded" action="/update_favorite">
+                    <form class="mb-3 p-3 bg-dark rounded" action="/update_favorite" method="POST">
                         <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Date:</strong>{{ order.created_at.strftime('%m-%d-%Y') }}</p>
                         <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Size:</strong>{{ order.size }}</p>
                         <input type="hidden" name="size" value="{{ order.size }}">
