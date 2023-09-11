@@ -56,7 +56,8 @@ def account():
         'id': session['user_id']
     }
     orders = models_order.Order.get_all_user_orders(data)
-    return render_template('account.html', orders=orders)
+    user = models_user.User.get_user_by_id(data)
+    return render_template('account.html', orders=orders, user=user)
 
 # Post Routes
 # Route for registering a user.
@@ -95,4 +96,23 @@ def login():
         flash("Invalid email or password.", "login")
         return redirect('/')
     session['user_id'] = user.id
+    return redirect('/homepage')
+
+# Route for editing a user's infromation.
+@app.post('/update_user')
+def update_user():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    if not models_user.User.edit_user_validation(request.form):
+        return redirect('/account')
+    data = {
+        'id': request.form['id'],
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email'],
+        'address': request.form['address'],
+        'city': request.form['city'],
+        'state': request.form['state']
+    }
+    models_user.User.update_user(data)
     return redirect('/homepage')

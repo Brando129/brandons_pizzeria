@@ -35,9 +35,10 @@
                 <div class="col-md-6 my-5">
                     <h2 class="proj_title">Account Information</h2>
                     <div class="p-3 bg-dark rounded">
-                        <form class="d-flex flex-column" action="/update" method="POST">
+                        <form class="d-flex flex-column" action="/update_user" method="POST">
+                            <input type="hidden" name="id" value="{{ user.id }}">
                             <!-- Flash messages -->
-                            {% with messages = get_flashed_messages(category_filter=['update']) %}     <!-- declare a variable called messages -->
+                            {% with messages = get_flashed_messages(category_filter=['update_user']) %}     <!-- declare a variable called messages -->
                                 {% if messages %}                            <!-- check if there are any messages -->
                                     {% for message in messages %}            <!-- loop through the messages -->
                                         <p class="text-danger"><strong>{{message}}</strong></p>                   <!-- display each message in a paragraph tag -->
@@ -81,39 +82,27 @@
                     </div>
                     <!-- End of Form Container -->
                 </div>
-                <!-- Form Container -->
-                <h2 class="proj_title">Past Orders</h2>
-                {% for order in orders | reverse %}
                 <div class="col-md-6 my-5">
-                    <div class="p-3 bg-dark rounded">
-                        <form class="d-flex flex-column" action="/update_favorite" method="POST">
-                            <div class="mb-2">
-                                <label class="reg_and_log_labels" for="size">{{ order.size }}</label>
-                                <input type="hidden" value="{{ order.size }}">
-                            </div>
-                            <div class="mb-2">
-                                <label class="reg_and_log_labels" for="last_name">{{ order.crust }}</label>
-                                <input type="hidden" value="{{ order.crust }}">
-                            </div>
-                            <div class="mb-2">
-                                <label class="reg_and_log_labels" for="email">{{ order.sauce }}</label>
-                                <input type="hidden" value="{{ order.sauce }}">
-                            </div>
-                            <div class="mb-2">
-                                <label class="reg_and_log_labels" for="address">{{ order.cheese }}</label>
-                                <input type="hidden" value="{{ order.cheese }}">
-                            </div>
-                                <div class="d-flex align-items-center">
-                                    <p class="reg_and_log_labels"><label class="reg_and_log_labels" for="city">Topping:</label>{{ order.topping }}</p>
-                                </div>
-                                <input type="hidden" value="{{ order.topping }}">
-                                <input class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Favorite">
-                            </div>
-                        </form>
-                    </div>
+                    <h2 class="proj_title">Previous Orders</h2>
+                    {% for order in orders | reverse %}
+                    <form class="mb-3 p-3 bg-dark rounded" action="/update_favorite">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Date:</strong>{{ order.created_at.strftime('%m-%d-%Y') }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Size:</strong>{{ order.size }}</p>
+                        <input type="hidden" name="size" value="{{ order.size }}">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Crust:</strong>{{ order.crust }}</p>
+                        <input type="hidden" name="crust" value="{{ order.crust }}">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Sauce:</strong>{{ order.sauce }}</p>
+                        <input type="hidden" name="sauce" value="{{ order.sauce }}">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Cheese:</strong>{{ order.cheese }}</p>
+                        <input type="hidden" name="cheese" value="{{ order.cheese }}">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Meat:</strong>{{ order.meat }}</p>
+                        <input type="hidden" name="meat" value="{{ order.meat }}">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Topping:</strong>{{ order.topping }}</p>
+                        <input type="hidden" name="topping" value="{{ order.topping }}">
+                        <input style="width: 100%;" class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Favorite">
+                    </form>
                     {% endfor %}
                 </div>
-                <!-- End of Form Container -->
             </div>
         </div>
     </div>

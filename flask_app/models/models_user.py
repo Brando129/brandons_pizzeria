@@ -42,8 +42,8 @@ class User:
     # Classmethod for updating a user's details.
     @classmethod
     def update_user(cls, data):
-        query = """UPDATE users SET email=%(email)s, address=%(address)s,
-                city=%(city)s, state=%(state)s, password=%(password)s WHERE id = %(id)s;"""
+        query = """UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s, address=%(address)s,
+                city=%(city)s, state=%(state)s WHERE id = %(id)s;"""
         return connectToMySQL(db).query_db(query, data)
 
     # Classmethod for getting a user by their ID.
@@ -97,4 +97,28 @@ class User:
         if data['password'] != data['confirm_password']:
             flash("Password does not match.", "register")
             is_valid = False
+        return is_valid
+
+    # Staticmethod for validating the editing of a user.
+    @staticmethod
+    def edit_user_validation(data):
+        is_valid = True
+        if len(data['first_name']) < 2:
+            is_valid = False
+            flash("First name must be more 2 characters.", 'update_user')
+        if len(data['last_name']) < 2:
+            is_valid = False
+            flash("Last name must be more 2 characters.", 'update_user')
+        if len(data['email']) < 10:
+            is_valid = False
+            flash("Email must be at least 10 characters.", 'update_user')
+        if len(data['address']) < 5:
+            is_valid = False
+            flash("Address must be at least 5 characters.", 'update_user')
+        if len(data['city']) < 3:
+            is_valid = False
+            flash("City is required.", 'update_user')
+        if data['state'] == '':
+            is_valid = False
+            flash("State is required.", 'update_user')
         return is_valid
