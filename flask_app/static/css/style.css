@@ -70,6 +70,7 @@ div.card {
     border: 1px solid antiquewhite;
 }
 
+/* Border bottom */
 .b_bottom {
     border-bottom: 2px solid antiquewhite;
 }
@@ -83,9 +84,8 @@ div.card {
 /* Fields Scroll Bar */
 .scrollbar::-webkit-scrollbar
 {
-    width: 12px;
+    width: 10px;
     background-color: transparent;
-    height: 7px;
 }
 
 .scrollbar::-webkit-scrollbar-track
@@ -97,7 +97,11 @@ div.card {
 .scrollbar::-webkit-scrollbar-thumb
 {
     border-radius: 10px;
-    background-color: whitesmoke;
+    background-color: antiquewhite;
     border: 2px solid black;
 }
 /* End of Fields Scroll Bar */
+
+.card_border {
+    border: 2px solid antiquewhite;
+}

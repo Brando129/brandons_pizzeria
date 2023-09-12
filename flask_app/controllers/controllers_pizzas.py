@@ -10,17 +10,19 @@ def create_pizza():
         return redirect('/logout')
     if not models_pizza.Pizza.validate_pizza(request.form):
         return redirect('/craft_pizza')
+
     pizza = {
         'method': request.form['method'],
         'size': request.form['size'],
-        'crust': request.form['crust'],
         'quantity': request.form['quantity'],
-        'meat': request.form['meat'],
-        'cheese': request.form['cheese'],
+        'crust': request.form['crust'],
         'sauce': request.form['sauce'],
+        'cheese': request.form['cheese'],
+        'meat': request.form['meat'],
         'topping': request.form['topping'],
         'order_id': session['user_id']
     }
+
     models_pizza.Pizza.save_new_pizza(pizza)
 
     delivery = float(request.form['method'])
@@ -30,9 +32,7 @@ def create_pizza():
     total_price = round(price * quantity + delivery + tax, 2)
     total = total_price
 
-
     order = {
-        'total': total,
         'method': request.form['method'],
         'size': request.form['size'],
         'crust': request.form['crust'],
@@ -41,6 +41,7 @@ def create_pizza():
         'cheese': request.form['cheese'],
         'sauce': request.form['sauce'],
         'topping': request.form['topping'],
+        'total': total,
         'user_id': session['user_id']
     }
     models_order.Order.save_new_order(order)

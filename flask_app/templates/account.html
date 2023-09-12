@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-6 my-5">
                     <h2 class="proj_title">Account Information</h2>
-                    <div class="p-3 bg-dark rounded">
+                    <div class="p-3 bg-dark rounded card_border">
                         <form class="d-flex flex-column" action="/update_user" method="POST">
                             <input type="hidden" name="id" value="{{ user.id }}">
                             <!-- Flash messages -->
@@ -82,22 +82,22 @@
                     </div>
                     <!-- End of Form Container -->
                 </div>
-                <div class="col-md-6 my-5">
+                <div style="height: 517px;" class="col-md-6 my-5 overflow-y-scroll scrollbar">
                     <h2 class="proj_title">Previous Orders</h2>
                     {% for order in orders | reverse %}
-                    <form class="mb-3 p-3 bg-dark rounded" action="/update_favorite" method="POST">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Date:</strong>{{ order.created_at.strftime('%m-%d-%Y') }}</p>
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Size:</strong>{{ order.size }}</p>
+                    <form class="mb-3 p-3 bg-dark rounded card_border" action="/update_favorite" method="POST">
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Date:    </strong>{{ order.created_at.strftime('%m-%d-%Y') }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Size:    </strong>{{ order.size }}</p>
                         <input type="hidden" name="size" value="{{ order.size }}">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Crust:</strong>{{ order.crust }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Crust:    </strong>{{ order.crust }}</p>
                         <input type="hidden" name="crust" value="{{ order.crust }}">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Sauce:</strong>{{ order.sauce }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Sauce:    </strong>{{ order.sauce }}</p>
                         <input type="hidden" name="sauce" value="{{ order.sauce }}">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Cheese:</strong>{{ order.cheese }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Cheese:    </strong>{{ order.cheese }}</p>
                         <input type="hidden" name="cheese" value="{{ order.cheese }}">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Meat:</strong>{{ order.meat }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Meat:    </strong>{{ order.meat }}</p>
                         <input type="hidden" name="meat" value="{{ order.meat }}">
-                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Topping:</strong>{{ order.topping }}</p>
+                        <p class="reg_and_log_labels"><strong class="reg_and_log_labels">Topping:    </strong>{{ order.topping }}</p>
                         <input type="hidden" name="topping" value="{{ order.topping }}">
                         <input style="width: 100%;" class="sign_up_btn mt-2 p-2 rounded" type="submit" value="Favorite">
                     </form>

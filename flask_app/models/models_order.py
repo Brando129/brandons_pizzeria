@@ -31,7 +31,7 @@ class Order:
     # Classmethod for getting all the orders from a specific user.
     @classmethod
     def get_all_user_orders(cls, data):
-        query = """SELECT * FROM orders WHERE user_id = %(id)s;"""
+        query = """SELECT * FROM orders WHERE user_id = %(id)s;""" # This query needs adjusted.
         results = connectToMySQL(db).query_db(query, data)
         print(results)
         customer_orders = []

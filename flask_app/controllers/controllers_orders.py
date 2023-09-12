@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request, session
+from flask import redirect, session
 from flask_app.models import models_order
 
 # Post Routes
@@ -9,6 +9,15 @@ def create_order():
     if 'user_id' not in session:
         return redirect('/logout')
     order = {
+        'method': session['method'],
+        'quantity': session['quantity'],
+        'size': session['size'],
+        'crust': session['crust'],
+        'meat': session['meat'],
+        'cheese': session['cheese'],
+        'sauce': session['sauce'],
+        'topping': session['topping'],
+        'price': session['price'],
         'total': session['total'],
         'user_id': session['user_id']
     }

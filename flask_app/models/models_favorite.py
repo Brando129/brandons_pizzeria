@@ -27,7 +27,7 @@ class Favorite:
     # Classmethod for getting all the orders from a specific user.
     @classmethod
     def get_user_favortie(cls, data):
-        query = """SELECT * FROM favorites WHERE favorites.id = 1 AND user_id = %(id)s;""" # This query needs adjusted
+        query = """SELECT * FROM favorites WHERE favorites.id = 1 AND user_id = %(id)s;""" # This query needs
         results = connectToMySQL(db).query_db(query, data)
         print(results)
         customer_favorite = []
