@@ -1,6 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 # Flash messages import
 from flask import flash
+# Random import
+import random
 
 # Database name
 db = "brandons_pizzeria"
@@ -41,6 +43,90 @@ class Pizza:
         query = "Delete * FROM pizzas WHERE id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
+
+    # Classmethod for getting random crusts.
+    @classmethod
+    def random_crusts(cls):
+        crusts = []
+        thin_crust = ["Thin crust"]
+        flatbread = ["Flatbread crust"]
+        original = ["Original crust"]
+        stuffed_crust = ["Stuffed crust"]
+        cheese_crust = ["Cheese crust"]
+        garlic_crust = ["Garlic crust"]
+        deep_dish = ["Deep dish"]
+        crusts.append(thin_crust)
+        crusts.append(flatbread)
+        crusts.append(original)
+        crusts.append(stuffed_crust)
+        crusts.append(cheese_crust)
+        crusts.append(garlic_crust)
+        crusts.append(deep_dish)
+        return random.choice(crusts)
+
+    # Classmethod for getting random sauces.
+    @classmethod
+    def random_sauces(cls):
+        sauces = []
+        traditional = ["Traditional"]
+        buffalo = ["Buffalo"]
+        alfredo = ["Alfredo"]
+        bbq = ["BBQ"]
+        sweet = ["Sweet"]
+        sauces.append(traditional)
+        sauces.append(buffalo)
+        sauces.append(alfredo)
+        sauces.append(bbq)
+        sauces.append(sweet)
+        return random.choice(sauces)
+
+    # Classmethod for getting random cheeses.
+    @classmethod
+    def random_cheeses(cls):
+        cheeses = []
+        provolone = ["Provolone"]
+        american = ["American"]
+        mozzorella = ["Mozzorella"]
+        parmesan = ["Parmesan"]
+        cheddar = ["Cheddar"]
+        cheeses.append(provolone)
+        cheeses.append(american)
+        cheeses.append(mozzorella)
+        cheeses.append(parmesan)
+        cheeses.append(cheddar)
+        return random.choice(cheeses)
+
+    # Classmethod for getting random meats.
+    @classmethod
+    def random_meats(cls):
+        meats = []
+        pepperoni = ["Pepperoni"]
+        sausage = ["Sausage"]
+        ham = ["Ham"]
+        chicken = ["Chicken"]
+        bacon = ["Bacon"]
+        meats.append(pepperoni)
+        meats.append(sausage)
+        meats.append(ham)
+        meats.append(bacon)
+        meats.append(chicken)
+        return random.choice(meats)
+
+    # Classmethod for getting random toppings.
+    @classmethod
+    def random_toppings(cls):
+        toppings = []
+        onions = ["Onions"]
+        peppers = ["Peppers"]
+        mushrooms = ["Mushrooms"]
+        olives = ["Olives"]
+        pineapples = ["Pineapples"]
+        toppings.append(onions)
+        toppings.append(peppers)
+        toppings.append(mushrooms)
+        toppings.append(olives)
+        toppings.append(pineapples)
+        return random.choice(toppings)
 
     # Staticmethod for validating a pizza.
     @staticmethod

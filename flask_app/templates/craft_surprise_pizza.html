@@ -14,7 +14,7 @@
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital@1&display=swap" rel="stylesheet"> -->
-    <title>Re-order Pizza</title>
+    <title>Surprise Pizza</title>
 </head>
 <body class="background">
     <!-- Page Container -->
@@ -30,10 +30,10 @@
             </div>
         </div>
         <!-- End of Banner -->
-        <h1 class="quick_opt text-center my-5">Re-Order Favorite Pizza</h1>
+        <h1 class="quick_opt text-center my-5">Surprise Pizza</h1>
         <!-- Form Container -->
         <div class="col-md-6 mx-auto my-5 p-3 bg-dark rounded">
-            <form class="d-flex flex-column" action="/create_craft_pizza" method="POST">
+            <form class="d-flex flex-column" action="/create_random_pizza" method="POST">
                 <input type="hidden" name="order_id" value="{{ session.user_id }}">
                 <!-- Flash messages -->
                 {% with messages = get_flashed_messages(category_filter=['pizza']) %}     <!-- declare a variable called messages -->
@@ -44,7 +44,6 @@
                     {% endif %}
                 {% endwith %}
                 <!-- End of Flash messages -->
-                {% for favorite in user_favorite %}
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="method">Method</label>
@@ -69,7 +68,9 @@
                     <div>
                         <label class="reg_and_log_labels" for="crust">Crust</label>
                         <select class="form-control" name="crust">
-                            <option value="{{ favorite.crust }}">{{ favorite.crust }}</option>
+                            {% for crust in crusts %}
+                            <option value="{{ crust }}">{{ crust }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div>
@@ -80,7 +81,9 @@
                 <div>
                     <label class="reg_and_log_labels" for="meat">Meat</label>
                     <select class="form-control" name="meat">
-                        <option value="{{ favorite.meat }}">{{ favorite.meat }}</option>
+                        {% for meat in meats %}
+                        <option value="{{ meat }}">{{ meat }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Meats</h4>
@@ -109,7 +112,9 @@
                 <div>
                     <label class="reg_and_log_labels" for="cheese">Cheese</label>
                     <select class="form-control" name="cheese">
-                        <option value="{{ favorite.cheese }}">{{ favorite.cheese }}</option>
+                        {% for cheese in cheeses %}
+                        <option value="{{ cheese }}">{{ cheese }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Cheeses</h4>
@@ -138,7 +143,9 @@
                 <div>
                     <label class="reg_and_log_labels" for="sauce">Sauces</label>
                     <select class="form-control" name="sauce">
-                        <option value="{{ favorite.sauce }}">{{ favorite.sauce }}</option>
+                        {% for sauce in sauces %}
+                        <option value="{{ sauce }}">{{ sauce }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Sauces</h4>
@@ -167,7 +174,9 @@
                 <div>
                     <label class="reg_and_log_labels" for="topping">Toppings</label>
                     <select class="form-control" name="topping">
-                        <option value="{{ favorite.topping }}">{{ favorite.topping }} </option>
+                        {% for topping in toppings %}
+                        <option value="{{ topping }}">{{ topping }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Toppings</h4>
@@ -194,11 +203,8 @@
                     </div>
                 </div> -->
                 <input class="sign_up_btn mt-3 p-2 rounded" type="submit" value="ADD TO ORDER">
-                {% endfor %}
             </form>
         </div>
         <!-- End of Form Container -->
     </div>
     <!-- End of Page Container -->
-</body>
-</html>

@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request, session
+from flask import redirect, request, session
 from flask_app.models import models_favorite
 
 # Post Routes

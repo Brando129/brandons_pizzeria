@@ -56,7 +56,13 @@ def craft_fav_pizza():
 def craft_surprise_pizza():
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('craft_surprise_pizza.html')
+    crusts = models_pizza.Pizza.random_crusts()
+    meats = models_pizza.Pizza.random_meats()
+    cheeses = models_pizza.Pizza.random_cheeses()
+    sauces = models_pizza.Pizza.random_sauces()
+    toppings = models_pizza.Pizza.random_toppings()
+    return render_template('craft_surprise_pizza.html', crusts=crusts, meats=meats,
+    cheeses=cheeses, sauces=sauces, toppings=toppings)
 
 # Route for rendering the Order page.
 @app.route('/order')
