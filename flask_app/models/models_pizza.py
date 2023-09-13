@@ -40,9 +40,8 @@ class Pizza:
     # Classmethod for getting a deleting a pizza.
     @classmethod
     def destroy_pizza(cls, data):
-        query = "Delete * FROM pizzas WHERE id = %(id)s;"
-        results = connectToMySQL(db).query_db(query, data)
-        return cls(results[0])
+        query = "Delete * FROM pizzas WHERE id = %(id)s and user_id = %(user_id)s;"
+        return connectToMySQL(db).query_db(query, data)
 
     # Classmethod for getting random crusts.
     @classmethod

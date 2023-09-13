@@ -44,7 +44,6 @@
                     {% endif %}
                 {% endwith %}
                 <!-- End of Flash messages -->
-                {% for favorite in user_favorite %}
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <label class="reg_and_log_labels" for="method">Method</label>
@@ -69,7 +68,7 @@
                     <div>
                         <label class="reg_and_log_labels" for="crust">Crust</label>
                         <select class="form-control" name="crust">
-                            <option value="{{ favorite.crust }}">{{ favorite.crust }}</option>
+                            <option value="{{ user_favorite.crust }}">{{ user_favorite.crust }}</option>
                         </select>
                     </div>
                     <div>
@@ -80,7 +79,7 @@
                 <div>
                     <label class="reg_and_log_labels" for="meat">Meat</label>
                     <select class="form-control" name="meat">
-                        <option value="{{ favorite.meat }}">{{ favorite.meat }}</option>
+                        <option value="{{ user_favorite.meat }}">{{ user_favorite.meat }}</option>
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Meats</h4>
@@ -109,7 +108,7 @@
                 <div>
                     <label class="reg_and_log_labels" for="cheese">Cheese</label>
                     <select class="form-control" name="cheese">
-                        <option value="{{ favorite.cheese }}">{{ favorite.cheese }}</option>
+                        <option value="{{ user_favorite.cheese }}">{{ user_favorite.cheese }}</option>
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Cheeses</h4>
@@ -138,7 +137,7 @@
                 <div>
                     <label class="reg_and_log_labels" for="sauce">Sauces</label>
                     <select class="form-control" name="sauce">
-                        <option value="{{ favorite.sauce }}">{{ favorite.sauce }}</option>
+                        <option value="{{ user_favorite.sauce }}">{{ user_favorite.sauce }}</option>
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Sauces</h4>
@@ -167,7 +166,7 @@
                 <div>
                     <label class="reg_and_log_labels" for="topping">Toppings</label>
                     <select class="form-control" name="topping">
-                        <option value="{{ favorite.topping }}">{{ favorite.topping }} </option>
+                        <option value="{{ user_favorite.topping }}">{{ user_favorite.topping }} </option>
                     </select>
                 </div>
                 <!-- <h4 class="proj_title my-3">Toppings</h4>
@@ -194,7 +193,6 @@
                     </div>
                 </div> -->
                 <input class="sign_up_btn mt-3 p-2 rounded" type="submit" value="ADD TO ORDER">
-                {% endfor %}
             </form>
         </div>
         <!-- End of Form Container -->

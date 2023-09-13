@@ -39,3 +39,16 @@ class Order:
             print(order)
             customer_orders.append(cls(order))
         return customer_orders
+
+    # Classmethod for getting a order by id.
+    @classmethod
+    def get_one_order_by_id(cls, data):
+        query = "SELECT * FROM orders WHERE id = %(id)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        return cls(results[0])
+
+    # Classmethod for deleting a order.
+    @classmethod
+    def destroy_order(cls, data):
+        query = "DELETE FROM orders WHERE id = %(id)s AND user_id = %(user_id)s;"
+        return connectToMySQL(db).query_db(query, data)

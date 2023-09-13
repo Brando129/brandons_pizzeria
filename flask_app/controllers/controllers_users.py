@@ -69,7 +69,10 @@ def craft_surprise_pizza():
 def order():
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('order.html')
+    data = {
+        'id': 1
+    }
+    return render_template('order.html', order=models_order.Order.get_one_order_by_id(data))
 
 # Route for rendering the Account page.
 @app.route('/account')

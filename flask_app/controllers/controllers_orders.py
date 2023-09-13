@@ -1,6 +1,20 @@
 from flask_app import app
 from flask import redirect, session
-from flask_app.models import models_order
+from flask_app.models import models_order, models_pizza
+
+# Get Routes
+# Route for deleting a order and pizza.
+@app.get('/destroy_order/pizza/<int:id>')
+def destroy_order_and_pizza(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        'id': id,
+        'user_id': session['user_id']
+    }
+    # models_pizza.Pizza.destroy_pizza(data)
+    models_order.Order.destroy_order(data)
+    return redirect('/homepage')
 
 # Post Routes
 # Route for creating a order.
