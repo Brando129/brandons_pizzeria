@@ -14,7 +14,8 @@ def update_favortie():
         'cheese': request.form['cheese'],
         'sauce': request.form['sauce'],
         'topping': request.form['topping'],
-        'user_id': session['user_id']
+        'user_id': session['user_id'],
+        'order_id': request.form['order_id']
     }
     models_favorite.Favorite.save_new_favorite(favorite)
     return redirect('/homepage')
